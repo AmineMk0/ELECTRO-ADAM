@@ -1,0 +1,7 @@
+﻿Tool: built-in image_gen.imagegen
+Source: public/assets/logo.jpg
+Output: public/assets/logo-transparent.png
+Transparent background: true
+
+Final prompt:
+Use case: background-extraction. Edit target: the provided ELECTRO ADAM logo. Remove only the solid black background including black negative spaces within the symbol and letters, replacing it with true alpha transparency. Preserve the original cyan/blue logo artwork, exact shapes, lettering ÉLECTRO ADAM, accents, proportions, placement, colors, and edges. No redesign, no additions, no new text, no shadows. Keep the full original logo visible on a transparent canvas. This is an existing brand asset for a website; faithful extraction is essential.

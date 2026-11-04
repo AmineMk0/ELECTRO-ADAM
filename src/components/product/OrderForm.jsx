@@ -33,7 +33,7 @@ export default function OrderForm({ product, addToCart }) {
           <input name="quantity" aria-label="الكمية" aria-invalid={Boolean(errors.quantity)} aria-describedby={errors.quantity ? 'error-quantity' : undefined} type="number" min="1" max="99" step="1" value={values.quantity} onChange={event => setValues(current => ({ ...current, quantity: event.target.value === '' ? '' : Number(event.target.value) }))} className="h-10 w-12 rounded border border-blue-100 bg-white text-center text-sm text-brand"/>
           <button type="button" aria-label="زيادة الكمية" disabled={values.quantity >= 99} onClick={() => setValues(current => ({ ...current, quantity: Number(current.quantity) + 1 }))} className="grid h-10 w-10 place-items-center rounded bg-brand text-white disabled:opacity-40"><Plus size={16}/></button>
         </div>
-        <button type="submit" className="flex min-h-11 flex-1 items-center justify-center gap-2 rounded bg-orange px-3 py-2 text-sm font-bold text-white hover:bg-[#ed7b00]"><ShoppingCart size={18}/>أضف إلى السلة</button>
+        <button type="submit" className="flex min-h-11 flex-1 items-center justify-center gap-2 rounded bg-orange px-3 py-2 text-sm font-bold text-white hover:bg-[#ed7b00]"><ShoppingCart size={15}/>أضف إلى السلة</button>
       </div>
       {errors.quantity && <p id="error-quantity" className="mt-1 text-xs text-red-700">{errors.quantity}</p>}
       <p className="mt-2 text-[11px] leading-5 text-slate-600">واجهة تجريبية: الطلب غير متاح حالياً. بيانات النموذج لا تُرسل ولا تُحفظ.</p>

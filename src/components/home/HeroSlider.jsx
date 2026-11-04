@@ -8,7 +8,7 @@ const slides = [
   { image: accueil1, alt: 'إلكترو آدم، متجرك الإلكتروني للإلكترونيات الحديثة — تسوق الآن', to: '/catalogue' },
   { image: accueil2, alt: 'إلكترو آدم — عروض حصرية وتخفيضات مميزة على الإلكترونيات', to: '/category/offers' },
 ];
-const controlClass = 'absolute top-1/2 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-brand/60 text-white transition-colors hover:bg-brand/85 sm:size-11';
+const controlClass = 'absolute top-1/2 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-brand/60 text-white transition-colors hover:bg-brand/85 sm:size-10';
 
 export default function HeroSlider() {
   const [active, setActive] = useState(0);
@@ -58,11 +58,11 @@ export default function HeroSlider() {
       onPointerLeave={event => { if (event.pointerType === 'mouse') setHovered(false); }}
       onFocusCapture={() => setFocused(true)}
       onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}
-      className="relative mx-auto w-[calc(100%-16px)] max-w-7xl overflow-hidden rounded-2xl sm:w-[calc(100%-32px)] md:rounded-3xl"
+      className="relative mx-auto w-[calc(100%-16px)] max-w-6xl overflow-hidden rounded-2xl sm:w-[calc(100%-32px)] md:rounded-3xl"
     >
       <h1 className="sr-only">إلكترو آدم — متجر الإلكترونيات والعروض</h1>
       <div
-        className="relative isolate aspect-[2/1] touch-pan-y"
+        className="relative isolate aspect-[2.3/1] sm:aspect-[2.6/1] touch-pan-y"
         onTouchStart={event => {
           const touch = event.touches[0];
           touchStart.current = event.touches.length === 1 ? { x: touch.clientX, y: touch.clientY } : null;
@@ -88,8 +88,8 @@ export default function HeroSlider() {
         ))}
       </div>
 
-      <button type="button" aria-label="الشريحة السابقة" onClick={() => change(-1)} className={`${controlClass} right-2 sm:right-3`}><ChevronRight size={21} aria-hidden="true"/></button>
-      <button type="button" aria-label="الشريحة التالية" onClick={() => change(1)} className={`${controlClass} left-2 sm:left-3`}><ChevronLeft size={21} aria-hidden="true"/></button>
+      <button type="button" aria-label="الشريحة السابقة" onClick={() => change(-1)} className={`${controlClass} right-2 sm:right-3`}><ChevronRight size={18} aria-hidden="true"/></button>
+      <button type="button" aria-label="الشريحة التالية" onClick={() => change(1)} className={`${controlClass} left-2 sm:left-3`}><ChevronLeft size={18} aria-hidden="true"/></button>
     </section>
   );
 }

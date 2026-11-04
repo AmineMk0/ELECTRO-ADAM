@@ -18,18 +18,18 @@ function ProductContent({ product, addToCart }) {
   return (
     <div className="mx-auto max-w-6xl px-3 pb-6 sm:px-6">
       <nav aria-label="مسار التصفح" className="flex flex-wrap items-center gap-1 py-3 text-[10px] leading-5 text-slate-500 sm:gap-2 sm:text-xs"><Link to="/" aria-label="الرئيسية"><Home size={13}/></Link><ChevronLeft size={11}/><Link to="/catalogue">التشكيلات</Link><ChevronLeft size={11}/><Link to={`/category/${product.category}`}>المنتجات</Link><ChevronLeft size={11}/><span aria-current="page" className="truncate">{product.name}</span></nav>
-      <div className="grid min-w-0 gap-5 lg:grid-cols-2 lg:gap-8" dir="ltr">
+      <div className="grid min-w-0 gap-4 lg:grid-cols-2 lg:gap-6" dir="ltr">
         <div dir="rtl"><ProductGallery product={product} discount={discount}/></div>
         <div dir="rtl" className="min-w-0">
-          <h1 className="text-xl leading-9 font-bold text-brand sm:text-2xl lg:text-3xl">{product.name}</h1>
+          <h1 className="text-xl leading-8 font-bold text-brand sm:text-2xl lg:text-3xl">{product.name}</h1>
           {product.subtitle && <p className="mt-1 text-xs leading-6 text-slate-600 sm:text-sm">{product.subtitle}</p>}
-          {rating !== null && <div className="mt-2 flex items-center gap-2"><span className="flex text-amber-400" aria-label={`${rating.toFixed(1)} من 5`}>{Array.from({ length: 5 }, (_, index) => <Star key={index} size={17} fill={index < Math.round(rating) ? 'currentColor' : 'none'}/>)}</span><span className="text-xs text-gray-500">({reviews.length})</span></div>}
+          {rating !== null && <div className="mt-2 flex items-center gap-2"><span className="flex text-amber-400" aria-label={`${rating.toFixed(1)} من 5`}>{Array.from({ length: 5 }, (_, index) => <Star key={index} size={14} fill={index < Math.round(rating) ? 'currentColor' : 'none'}/>)}</span><span className="text-xs text-gray-500">({reviews.length})</span></div>}
           <div className="mt-2 flex flex-wrap items-baseline gap-3"><strong className="text-2xl font-bold text-orange sm:text-3xl"><bdi>{product.price} MAD</bdi></strong>{discount > 0 && <del className="text-sm font-semibold text-gray-400"><bdi>{product.originalPrice} MAD</bdi></del>}</div>
           {discount > 0 && <p className="mt-0.5 text-xs font-bold text-orange">وفر <bdi>{product.originalPrice - product.price} MAD</bdi></p>}
           {product.isSample && <p className="mt-1 text-[11px] text-gray-500">بيانات وأسعار توضيحية، في انتظار الكتالوج الرسمي.</p>}
           {product.benefits?.length > 0 && <ul className="my-4 grid grid-cols-4 gap-1 text-center">{product.benefits.map(benefit => { const Icon = benefitIcons[benefit.icon] || Package; return <li key={benefit.title} className="min-w-0"><Icon aria-hidden="true" className="mx-auto mb-1 h-6 w-6 text-[#10aeb8]"/><p className="text-[10px] leading-5 font-bold text-brand sm:text-xs">{benefit.title}</p>{benefit.detail && <p className="text-[9px] leading-4 text-slate-500 sm:text-[11px]">{benefit.detail}</p>}</li>; })}</ul>}
           <OrderForm product={product} addToCart={addToCart}/>
-          <ul className="mt-3 grid grid-cols-3 gap-2">{trust.map(({ Icon, title }) => <li key={title} className="flex flex-col items-center gap-1 text-center sm:flex-row sm:justify-center"><Icon aria-hidden="true" size={23} className="shrink-0 text-brand"/><span className="text-[10px] font-bold text-brand sm:text-xs">{title}</span></li>)}</ul>
+          <ul className="mt-3 grid grid-cols-3 gap-2">{trust.map(({ Icon, title }) => <li key={title} className="flex flex-col items-center gap-1 text-center sm:flex-row sm:justify-center"><Icon aria-hidden="true" size={20} className="shrink-0 text-brand"/><span className="text-[10px] font-bold text-brand sm:text-xs">{title}</span></li>)}</ul>
           {product.isSample && <p className="mt-1 text-center text-[10px] leading-5 text-slate-500">تُؤكد شروط التوصيل والضمان عند إطلاق المتجر.</p>}
         </div>
       </div>
@@ -42,6 +42,6 @@ function ProductContent({ product, addToCart }) {
 export default function ProductDetail({ addToCart }) {
   const { id } = useParams();
   const product = products.find(item => item.id === id);
-  if (!product) return <section className="mx-auto min-h-[50vh] max-w-3xl px-6 py-16"><h1 className="mb-4 text-2xl font-bold text-brand">المنتج غير موجود</h1><Link to="/catalogue" className="text-brand underline">العودة إلى التشكيلات</Link></section>;
+  if (!product) return <section className="mx-auto min-h-[40vh] max-w-3xl px-6 py-9"><h1 className="mb-4 text-2xl font-bold text-brand">المنتج غير موجود</h1><Link to="/catalogue" className="text-brand underline">العودة إلى التشكيلات</Link></section>;
   return <ProductContent key={product.id} product={product} addToCart={addToCart}/>;
 }

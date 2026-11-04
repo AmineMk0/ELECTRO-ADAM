@@ -1,14 +1,14 @@
 import { FileText, Settings, Package, Star } from 'lucide-react';
 
 function DetailSection({ title, Icon, children }) {
-  return <section className="border-t border-[#edf0f5] py-5" aria-label={title}><h2 className="mb-3 flex items-center gap-2 text-lg font-bold text-brand"><Icon size={22} aria-hidden="true"/>{title}</h2>{children}</section>;
+  return <section className="border-t border-[#edf0f5] py-4" aria-label={title}><h2 className="mb-3 flex items-center gap-2 text-lg font-bold text-brand"><Icon size={19} aria-hidden="true"/>{title}</h2>{children}</section>;
 }
 
 export default function ProductInformation({ product }) {
   const points = product.descriptionPoints?.length ? product.descriptionPoints : [product.description].filter(Boolean);
   const reviews = (product.reviews || []).filter(review => review.isGenuine === true);
   return (
-    <div className="mt-6 text-sm leading-7 text-slate-700 lg:mt-8">
+    <div className="mt-4 text-sm leading-6 text-slate-700 lg:mt-6">
       <DetailSection title="وصف المنتج" Icon={FileText}>
         {points.length ? <ul className="space-y-1 pr-4 marker:text-orange list-disc">{points.map(point => <li key={point}>{point}</li>)}</ul> : <p>لا يتوفر وصف إضافي لهذا المنتج حالياً.</p>}
       </DetailSection>

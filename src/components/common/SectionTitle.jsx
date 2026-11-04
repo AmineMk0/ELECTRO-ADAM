@@ -1,1 +1,1 @@
-export default function SectionTitle({ children, id }) { return <h2 id={id} className="mx-auto mb-9 w-[70%] rounded-full bg-brand px-4 py-1.5 text-center text-xl font-semibold text-white md:mb-12 md:max-w-3xl md:py-2 md:text-3xl">{children}</h2>; }
+export default function SectionTitle({ children, id }) { return <h2 id={id} className="mx-auto mb-6 w-[70%] rounded-full bg-brand px-4 py-1.5 text-center text-xl font-semibold text-white md:mb-8 md:max-w-3xl md:py-2 md:text-3xl">{children}</h2>; }

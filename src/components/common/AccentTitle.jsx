@@ -1,5 +1,5 @@
 function Accent() {
-  return <svg viewBox="0 0 36 32" className="h-6 w-7 shrink-0 sm:h-8 sm:w-9" aria-hidden="true"><path d="M4 2 17 23 25 20 12 0ZM0 18 22 28 23 23 2 12Z" fill="#FF8A00"/></svg>;
+  return <svg viewBox="0 0 36 32" className="h-5 w-6 shrink-0 sm:h-6 sm:w-7" aria-hidden="true"><path d="M4 2 17 23 25 20 12 0ZM0 18 22 28 23 23 2 12Z" fill="#FF8A00"/></svg>;
 }
 
 export default function AccentTitle({ children, id }) {
