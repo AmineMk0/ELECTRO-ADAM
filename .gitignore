@@ -1,0 +1,38 @@
+# Dependencies and generated output
+node_modules/
+dist/
+build/
+coverage/
+.vite/
+.npm-cache/
+.vercel/
+
+# Environment files: commit only the empty, documented template
+.env
+.env.*
+!.env.example
+*.local
+
+# Credentials and local agent configuration
+.npmrc
+.aws/
+.ssh/
+.codex/
+.agents/
+secrets/
+credentials.json
+credentials.*.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Logs, editor files and operating-system files
+*.log
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.swp

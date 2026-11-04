@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+@import "tailwindcss";
+@theme { --color-brand: #073773; --color-orange: #ff8a00; --font-sans: 'Cairo', sans-serif; }
+@layer base { body { margin: 0; color: #111; background: white; } button, a { -webkit-tap-highlight-color: transparent; } button { cursor: pointer; } button:disabled { cursor: not-allowed; } :focus-visible { outline: 3px solid #ff8a00; outline-offset: 4px; } }
+@layer components { .section-space { @apply mt-7 mb-10 md:mt-12 md:mb-16; } }
+.hero, .delivery { background: linear-gradient(90deg, #ff9500 0%, #9a7844 43%, #073773 100%); }
+.review { background: linear-gradient(100deg, #073773 0%, #5c4c69 42%, #f4520a 100%); }
+.review::after { content: ''; position: absolute; bottom: -7px; left: 8px; border-top: 18px solid #163b72; border-right: 12px solid transparent; }
+.slide-in { animation: slide-in .5s ease both; }
+@keyframes slide-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
