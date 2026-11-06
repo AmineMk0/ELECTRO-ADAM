@@ -13,6 +13,14 @@ import About from './pages/About';
 import FAQ from './pages/FAQ';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Shipping from './pages/Shipping';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminOrders from './pages/AdminOrders';
+import AdminProducts from './pages/AdminProducts';
+import AdminProductAdd from './pages/AdminProductAdd';
+import AdminCategories from './pages/AdminCategories';
+import { AdminCatalogProvider } from './context/AdminCatalogContext';
+import AdminRoute from './components/admin/AdminRoute';
 import WhatsAppIcon from './components/common/WhatsAppIcon';
 import ProductCard from './components/common/ProductCard';
 import SectionTitle from './components/common/SectionTitle';
@@ -22,7 +30,15 @@ function Catalog({addToCart}) { const {id} = useParams(); const [params] = useSe
 const info = {about:['من نحن','إلكترو آدم، مشروع متجر مغربي متخصص في الدرونات والإلكترونيات. نعمل على تجهيز الكتالوج وخدمات المتجر.'],contact:['تواصل معنا','سيتم نشر معلومات التواصل الرسمية قريباً.'],account:['حسابي','خدمة الحسابات ستكون متاحة عند إطلاق المتجر.'],faq:['الأسئلة المتكررة','هل يمكن الطلب الآن؟ هذه نسخة عرض للواجهة؛ الطلبات غير متاحة بعد.'],shipping:['الشحن والتوصيل','نخطط لخدمة المدن المغربية. ستُحدد تكاليف التوصيل وشروط المجانية والمدد عند الإطلاق.'],returns:['الاستبدال والاسترجاع','ستُنشر شروط الضمان والاستبدال والاسترجاع قبل بدء استقبال الطلبات.'],privacy:['سياسة الخصوصية','هذه واجهة تجريبية. تُحفظ السلة محلياً في متصفحك فقط، ويمكن حذف محتوياتها في أي وقت.']};
 function Info({missing}) {const {slug} = useParams(); const content = !missing && info[slug] || ['الصفحة غير موجودة','يمكنك متابعة استكشاف متجرنا من الصفحة الرئيسية.']; return <section className="mx-auto min-h-[40vh] max-w-3xl px-6 py-9"><h1 className="mb-6 text-3xl font-bold text-brand">{content[0]}</h1><p className="leading-9 text-gray-600">{content[1]}</p><Link to="/" className="mt-8 inline-block text-brand underline">العودة للرئيسية</Link></section>;}
 function readCart(){try {const saved=JSON.parse(localStorage.getItem('electro-adam-cart') || '[]');return Array.isArray(saved) ? saved.filter(item => products.some(product => product.id === item.id) && Number.isInteger(item.quantity) && item.quantity > 0).map(item => ({id:item.id,quantity:Math.min(item.quantity,99)})) : [];} catch {return [];}}
-export default function App(){const [cart,setCart] = useState(readCart); const [cartOpen,setCartOpen] = useState(false); const [notice,setNotice] = useState(''); const dialog = useRef(null); const location = useLocation(); const whatsapp = (import.meta.env.VITE_WHATSAPP_NUMBER || '212703505900').replace(/\D/g,''); const validWhatsapp = /^\d{10,15}$/.test(whatsapp);
+export default function App() {
+ const location = useLocation();
+ const adminPath = location.pathname.toLowerCase().replace(/\/+$/, '');
+ const routes = <Routes><Route path="/admin/login" element={<AdminLogin/>}/><Route path="/admin/dashboard" element={<AdminRoute>{session => <AdminDashboard {...session}/>}</AdminRoute>}/><Route path="/admin/orders" element={<AdminRoute>{session => <AdminOrders {...session}/>}</AdminRoute>}/><Route path="/admin/products" element={<AdminRoute>{session => <AdminProducts {...session}/>}</AdminRoute>}/><Route path="/admin/products/add" element={<AdminRoute>{session => <AdminProductAdd {...session}/>}</AdminRoute>}/><Route path="/admin/categories" element={<AdminRoute>{session => <AdminCategories {...session}/>}</AdminRoute>}/><Route path="*" element={<Storefront/>}/></Routes>;
+ return adminPath.startsWith('/admin/') && adminPath !== '/admin/login'
+  ? <AdminCatalogProvider>{routes}</AdminCatalogProvider> : routes;
+}
+
+function Storefront(){const [cart,setCart] = useState(readCart); const [cartOpen,setCartOpen] = useState(false); const [notice,setNotice] = useState(''); const dialog = useRef(null); const location = useLocation(); const whatsapp = (import.meta.env.VITE_WHATSAPP_NUMBER || '212703505900').replace(/\D/g,''); const validWhatsapp = /^\d{10,15}$/.test(whatsapp);
  useEffect(() => {try{localStorage.setItem('electro-adam-cart',JSON.stringify(cart));}catch{}},[cart]);
  useEffect(() => {window.scrollTo(0,0);},[location.pathname,location.search]);
  useEffect(() => {if(!notice) return; const timer=setTimeout(() => setNotice(''),3000);return () => clearTimeout(timer);},[notice]);

@@ -1,13 +1,13 @@
 import { Link, useParams } from 'react-router-dom';
-import { Camera, FoldHorizontal, Radio, BriefcaseBusiness, Truck, Wallet, ShieldCheck, Package, Star, ChevronLeft, Home } from 'lucide-react';
+import { Camera, FoldHorizontal, Radio, BriefcaseBusiness, Package, Star, ChevronLeft, Home } from 'lucide-react';
 import { products } from '../data/products';
 import ProductGallery from '../components/product/ProductGallery';
 import OrderForm from '../components/product/OrderForm';
+import OrderBenefits from '../components/product/OrderBenefits';
 import ProductInformation from '../components/product/ProductInformation';
 import ProductCard from '../components/common/ProductCard';
 
 const benefitIcons = { camera: Camera, folding: FoldHorizontal, remote: Radio, bag: BriefcaseBusiness };
-const trust = [{ Icon: Truck, title: 'توصيل سريع' }, { Icon: Wallet, title: 'الدفع عند الاستلام' }, { Icon: ShieldCheck, title: 'ضمان الجودة' }];
 
 function ProductContent({ product, addToCart }) {
   const discount = product.originalPrice > product.price && product.price >= 0 ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
@@ -28,8 +28,8 @@ function ProductContent({ product, addToCart }) {
           {discount > 0 && <p className="mt-0.5 text-xs font-bold text-orange">وفر <bdi>{product.originalPrice - product.price} MAD</bdi></p>}
           {product.isSample && <p className="mt-1 text-[11px] text-gray-500">بيانات وأسعار توضيحية، في انتظار الكتالوج الرسمي.</p>}
           {product.benefits?.length > 0 && <ul className="my-4 grid grid-cols-4 gap-1 text-center">{product.benefits.map(benefit => { const Icon = benefitIcons[benefit.icon] || Package; return <li key={benefit.title} className="min-w-0"><Icon aria-hidden="true" className="mx-auto mb-1 h-6 w-6 text-[#10aeb8]"/><p className="text-[10px] leading-5 font-bold text-brand sm:text-xs">{benefit.title}</p>{benefit.detail && <p className="text-[9px] leading-4 text-slate-500 sm:text-[11px]">{benefit.detail}</p>}</li>; })}</ul>}
-          <OrderForm product={product} addToCart={addToCart}/>
-          <ul className="mt-3 grid grid-cols-3 gap-2">{trust.map(({ Icon, title }) => <li key={title} className="flex flex-col items-center gap-1 text-center sm:flex-row sm:justify-center"><Icon aria-hidden="true" size={20} className="shrink-0 text-brand"/><span className="text-[10px] font-bold text-brand sm:text-xs">{title}</span></li>)}</ul>
+          <OrderForm product={product}/>
+          <OrderBenefits/>
           {product.isSample && <p className="mt-1 text-center text-[10px] leading-5 text-slate-500">تُؤكد شروط التوصيل والضمان عند إطلاق المتجر.</p>}
         </div>
       </div>
